@@ -1,8 +1,8 @@
 const BaseService = require("./Base/BaseService");
 
 class Transaction extends BaseService {
-  constructor() {
-    super("transactions");
+  constructor(database) {
+    super("transactions", database);
   }
 }
 

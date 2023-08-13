@@ -11,3 +11,11 @@ CREATE TABLE transactions(
     driver_fee INT NOT NULL,
     maintenance_fee INT NOT NULL
 );
+
+CREATE TABLE users(
+    id SERIAL PRIMARY KEY,
+    username TEXT NOT NULL,
+    password TEXT NOT NULL,
+    email TEXT NOT NULL,
+    name TEXT NOT NULL
+)
