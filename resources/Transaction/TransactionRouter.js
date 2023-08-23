@@ -2,8 +2,8 @@ const express = require("express");
 const router = express.Router();
 const transactionController = require("./TransactionController");
 const { checkSchema } = require("express-validator");
-const validationHandler = require("../../middleware/validationHandler");
-const { transactionSchema } = require("../../schemas/TransactionSchema");
+const validationHandler = require("../../middlewares/validationHandler");
+const { transactionSchema } = require("../../validators/TransactionSchema");
 
 router.post(
   "/",
@@ -12,7 +12,7 @@ router.post(
   transactionController.createTransaction
 );
 router.get("/:id", validationHandler, transactionController.findTransaction);
-router.get("/", transactionController.findAllTransaction);
+router.get("/", transactionController.findTransactions);
 router.put(
   "/:id",
   checkSchema(transactionSchema),

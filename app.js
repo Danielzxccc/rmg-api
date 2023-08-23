@@ -15,8 +15,8 @@ app.use(express.urlencoded({ extended: false }));
 app.use("/transactions", transactionRouter);
 app.use("/auth", userRouter);
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 3500;
 
-app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`);
-});
+app.listen(port);
+
+module.exports = app;

@@ -1,3 +1,5 @@
+const getSearchableFields = require("../helpers/getSearchableFields");
+
 const transactionSchema = {
   customer_name: { notEmpty: true, isString: true },
   travel_startdate: { notEmpty: true, toDate: true },
@@ -11,4 +13,6 @@ const transactionSchema = {
   maintenance_fee: { notEmpty: true, isInt: true },
 };
 
-module.exports = { transactionSchema };
+const transactionFields = getSearchableFields(transactionSchema);
+
+module.exports = { transactionSchema, transactionFields };

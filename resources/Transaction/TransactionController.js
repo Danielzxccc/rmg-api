@@ -1,5 +1,6 @@
 const errorResponseHandler = require("../../helpers/errorResponseHandler");
 const Transaction = require("../../services/TransactionService");
+const Interactor = require("../../interactors/TransactionInteractor");
 const database = require("../../config/db");
 
 const transaction = new Transaction(database);
@@ -13,9 +14,14 @@ async function createTransaction(req, res) {
   }
 }
 
-async function findAllTransaction(req, res) {
+async function findTransactions(req, res) {
   try {
-    const data = await transaction.findAll();
+    const { page, limit, search } = req.query;
+    const data = await new Interactor().getTransactions({
+      page,
+      limit,
+      search,
+    });
     res.json(data);
   } catch (error) {
     errorResponseHandler(res, error);
@@ -56,7 +62,7 @@ async function deleteTransaction(req, res) {
 
 module.exports = {
   createTransaction,
-  findAllTransaction,
+  findTransactions,
   findTransaction,
   updateTransaction,
   deleteTransaction,
