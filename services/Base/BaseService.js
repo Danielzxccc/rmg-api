@@ -51,10 +51,12 @@ class BaseService {
             queryBuilder.orWhereILike(field.column, `%${search}%`);
           } else {
             queryBuilder.orWhereRaw(
-              `CAST(${field.column} AS TEXT) ILIKE '%${search}%'`
+              `CAST(${field.column} AS TEXT) ILIKE ?`,
+              `%${search}%`
             );
           }
         });
+        queryBuilder.offset(offset).limit(limit);
       });
 
       return data;
