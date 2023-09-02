@@ -1,9 +1,8 @@
 const knex = require("knex");
+const { development, production } = require("../knexfile");
 
-const client = knex({
-  client: "cockroachdb",
-  connection: process.env.CONNECTION_URI,
-  debug: true,
-});
+const client = knex(
+  process.env.NODE_ENV === "development" ? development : production
+);
 
 module.exports = client;

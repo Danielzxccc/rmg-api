@@ -38,8 +38,6 @@ class BaseService {
   async findMany({ options, offset, limit, search, fields }) {
     try {
       let query = this.client(this.collection);
-      console.log(fields, "test fields");
-
       const data = await query.modify((queryBuilder) => {
         if (options) queryBuilder.where(options);
         if (!search) {
