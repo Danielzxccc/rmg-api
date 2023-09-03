@@ -23,4 +23,5 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           cache: "npm"
+      - run: docker build .
       - run: docker compose up -d
