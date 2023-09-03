@@ -12,9 +12,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 // routes
-app.get("/api/hello", (req, res) => {
-  res.send("Hello Pipelines");
-});
 app.use("/api/transactions", transactionRouter);
 app.use("/api/auth", userRouter);
 
