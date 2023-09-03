@@ -23,5 +23,8 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           cache: "npm"
-      - run: npm i
+      - run: export CONNECTION_URI_PG=${{secrets.CONNECTION_URI_PG}}
+      - run: export NODE_ENV=${{secrets.NODE_ENV}}
+      - run: export DB_USER=${{secrets.DB_USER}}
+      - run: export DB_PASSWORD=${{secrets.DB_PASSWORD}}
       - run: docker compose up -d
