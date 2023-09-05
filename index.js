@@ -13,7 +13,7 @@ app.use(express.urlencoded({ extended: false }));
 
 // routes
 app.get("/api/hello", (req, res) => {
-  res.send("HELLO");
+  res.send("HELLO MF");
 });
 app.use("/api/transactions", transactionRouter);
 app.use("/api/auth", userRouter);
