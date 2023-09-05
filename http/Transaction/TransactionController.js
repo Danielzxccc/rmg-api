@@ -1,13 +1,14 @@
 const errorResponseHandler = require("../../helpers/errorResponseHandler");
 const Transaction = require("../../services/TransactionService");
-const Interactor = require("../../interactors/TransactionInteractor");
+const Interactor = require("./TransactionInteractor");
 const database = require("../../config/db");
 
 const transaction = new Transaction(database);
+const interactor = new Interactor(database);
 
 async function createTransaction(req, res) {
   try {
-    const data = await transaction.save(req.body);
+    const data = await interactor.saveTransaction(req.body);
     res.status(201).json(data);
   } catch (error) {
     errorResponseHandler(res, error);
@@ -17,7 +18,7 @@ async function createTransaction(req, res) {
 async function findTransactions(req, res) {
   try {
     const { page, limit, search } = req.query;
-    const data = await new Interactor().getTransactions({
+    const data = await interactor.getTransactions({
       page,
       limit,
       search,

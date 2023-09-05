@@ -1,11 +1,20 @@
-const Transaction = require("../services/TransactionService");
-const ErrorHandler = require("../helpers/errorHandler");
-const database = require("../config/db");
-const { transactionFields } = require("../validators/TransactionSchema");
+const Transaction = require("../../services/TransactionService");
+const ErrorHandler = require("../../helpers/errorHandler");
+const database = require("../../config/db");
+const { transactionFields } = require("../../validators/TransactionSchema");
 
 const transaction = new Transaction(database);
 
 class TransactionInteractor {
+  async saveTransaction(item) {
+    try {
+      const data = await transaction.save(item);
+      return data;
+    } catch (error) {
+      throw new ErrorHandler(error.message || "", 400);
+    }
+  }
+
   async getTransactions({ page, limit, search }) {
     try {
       const pageNumber = page || 1;

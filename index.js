@@ -4,8 +4,8 @@ const app = express();
 dotenv.config();
 
 // routers
-const transactionRouter = require("./resources/Transaction/TransactionRouter");
-const userRouter = require("./resources/Auth/AuthRouter");
+const transactionRouter = require("./http/Transaction/TransactionRouter");
+const userRouter = require("./http/Auth/AuthRouter");
 
 // middlewares
 app.use(express.json());

@@ -1,7 +1,7 @@
 const errorResponseHandler = require("../../helpers/errorResponseHandler");
 const User = require("../../services/UserService");
-
-const user = new User();
+const database = require("../../config/db");
+const user = new User(database);
 
 // test fetching
 async function get(req, res) {

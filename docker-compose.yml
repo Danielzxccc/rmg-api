@@ -1,5 +1,17 @@
 version: '3.5'
 services:
+  app:
+    build: .
+    ports:
+      - 3000:3000
+    environment:
+      NODE_ENV: ${NODE_ENV}
+      CONNECTION_URI: ${CONNECTION_URI}
+      CONNECTION_URI_PG: ${CONNECTION_URI_PG}
+    depends_on:
+      - postgres
+    restart: always
+
   postgres:
     container_name: postgres-db
     image: postgres
@@ -11,3 +23,5 @@ services:
       - ./data:/data/postgres
     ports:
       - "5432:5432"
+
+

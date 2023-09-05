@@ -3,7 +3,6 @@ module.exports = {
   production: {
     client: "pg",
     connection: process.env.CONNECTION_URI_PG,
-    debug: "true",
     migrations: {
       directory: "./migrations",
     },
